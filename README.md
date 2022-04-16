@@ -1,5 +1,5 @@
 ## 微型调查问卷平台 ##
-  始于百度任务 [任务地址][3]
+  始于百度任务 [初级实战班/javascript/微型调查问卷平台][3]
 
 ## 预览地址 ##
 [在线预览][2]
@@ -33,4 +33,4 @@ npm run build --report
 
 
   [2]: https://nice-ming.github.io/Questionnaire-management/#/
-  [3]: http://ife.baidu.com/%E5%88%9D%E7%BA%A7%E5%AE%9E%E6%88%98%E7%8F%AD/javascript/microQuestionnairePlatform.html
+  [3]: http://ife.baidu.com/
