@@ -1,10 +1,9 @@
-## 使用Vue.js实现一个微型问卷调查管理平台 ##
-  入门Vue有几周时间了，学习过程也只是写一些小demo，比如TodoList，购物车之类的了解了Vue的一些基础的特性和使用方法。刚好年后开学就想做个稍微像样点的东西，于是就找出了16年百度前端学院的任务五十来作为本次将要实现的项目。废话不多说，下面看东西。
+## 微型调查问卷平台 ##
+  始于百度任务 [任务地址][3]
 
-## 链接地址 ##
-预览地址：[在线预览][2]
+## 预览地址 ##
+[在线预览][2]
 
-任务描述：[任务地址][3]
 
 ## 技术栈 ##
 
@@ -34,4 +33,4 @@ npm run build --report
 
 
   [2]: https://nice-ming.github.io/Questionnaire-management/#/
-  [3]: http://ife.baidu.com/2016/task/detail?taskId=50
+  [3]: http://ife.baidu.com/%E5%88%9D%E7%BA%A7%E5%AE%9E%E6%88%98%E7%8F%AD/javascript/microQuestionnairePlatform.html
