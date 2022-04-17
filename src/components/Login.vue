@@ -66,12 +66,10 @@
           this.submitText = '登录中...'
           login(data).then(res => {
             if (res.code === 0) {
-              if (res.data.result === 0) {
-                this.loginSuccess(res.data)
-              } else {
-                this.showResult('error', '邮箱或密码错误')
-                this.submitText = ''
-              }
+              this.loginSuccess(res.data)
+            } else {
+              this.showResult('error', '邮箱或密码错误')
+              this.submitText = ''
             }
           })
         }
