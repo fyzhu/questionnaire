@@ -1,7 +1,7 @@
 import axios from 'axios'
 import storage, { TOKEN_KEY } from './../public/js/storage';
 
-export const apiDomain = 'https://i-code.top/qs'
+export const apiDomain = 'http://localhost:7001'
 const baseURL = `${apiDomain}/api/v1`
 
 axios.defaults.baseURL = baseURL
@@ -38,9 +38,15 @@ export function logout() {
   return adminHttp().get(url).then(res => Promise.resolve(res.data))
 }
 
+// 增加问卷
+export function createPaper(data) {
+  const url = '/papers'
+  return adminHttp().post(url, data).then(res => Promise.resolve(res.data))
+}
+
 // 获取问卷列表
 export function getPaperList() {
-  const url = '/paper-lists'
+  const url = '/papers'
   // if (isMock) {
   //   return axios.get(url).then(res => Promise.resolve(res.data))
   // }
@@ -49,7 +55,7 @@ export function getPaperList() {
 
 // 删除问卷
 export function deletePaper(data) {
-  const url = '/delete-paper'
+  const url = '/delete-papers'
   // if (isMock) {
   //   return axios.post(url, data).then(res => Promise.resolve(res.data))
   // }
@@ -58,17 +64,17 @@ export function deletePaper(data) {
 
 // 管理员获取问卷内容
 export function getPaper(data) {
-  const url = '/view-paper'
+  const url = '/papers/' + data.id
   // if (isMock) {
   //   return axios.post(url, data).then(res => Promise.resolve(res.data))
   // }
-  return adminHttp().post(url, data).then(res => Promise.resolve(res.data))
+  return adminHttp().get(url).then(res => Promise.resolve(res.data))
 }
 
 // 修改问卷
 export function updatePaper(data) {
-  const url = '/update-paper'
-  return adminHttp().post(url, data).then(res => Promise.resolve(res.data))
+  const url = '/papers/' + data.id
+  return adminHttp().put(url, data).then(res => Promise.resolve(res.data))
 }
 
 // 上传问卷表格
