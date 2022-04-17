@@ -26,8 +26,8 @@
 						<span @click="viewData(paper.id)">查看数据</span>
 					</template>
 					<template v-else>
-						<span @click="iterator = reEditItem(paper); iterator.next()">重新编辑</span>
-						<span @click="viewData(paper.id)">查看数据</span>
+						<span @click="iterator = reEditItem(paper); iterator.next()">编辑</span>
+						<span @click="viewData(paper.id)">查看</span>
 					</template>
 					<span @click="iterator = deleteItem(paper); iterator.next()">删除</span>
 				</li>
@@ -173,7 +173,7 @@ export default {
 
 		*reEditItem(item) {
 			yield this.showPrompt(`确认要重新编辑《${item.title}》？`);
-			yield this.$router.push({path: 're-edit', query: {id: item.id}});
+			yield this.$router.push({path: 'edit', query: {id: item.id}});
 		},
 
 		*deleteItem(item) {

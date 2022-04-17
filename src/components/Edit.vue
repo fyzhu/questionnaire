@@ -320,10 +320,15 @@ export default {
 				this.errorPrompt(`每份问卷至少一个问题！`)
 				return false
 			}
-
+      console.log(this.questionList);
 			let isAllQuestionFull = this.questionList.every(item => {
-				let emptyOptionList = item.questionOption.filter(option => option === '')
-				return item.questionTitle !== '' && !emptyOptionList.length
+        if(item.type!= 'textarea') {
+
+          let emptyOptionList = item.options.filter(option => option === '')
+				  return item.questionTitle !== '' && !emptyOptionList.length
+        }else {
+          return item.questionTitle !== ''
+        }
 			})
 			if (!isAllQuestionFull) {
 				this.errorPrompt('请完善问卷题目内容！')
@@ -354,9 +359,9 @@ export default {
 				let startTime = new Date(this.paperObj.startTime.replace(/-/g, ','))*1;
 				if (startTime > nowTime) {
 					this.showPrompt('确认保存并发布问卷吗？(开始日期晚于当前日期，到期才可答题)')
-					return
-				}
-				this.showPrompt(`确认保存并发布问卷吗？`)
+          return
+        }
+        this.showPrompt(`确认保存并发布问卷吗？`)
 			})()
 			yield this._releasePaper()
 		},
