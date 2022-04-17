@@ -7,6 +7,7 @@ const Register = () => import('@/components/Register')
 const List = () => import('@/components/List')
 const Data = () => import('@/components/Data')
 const Edit = () => import('@/components/Edit')
+const Add = () => import('@/components/Add')
 const Fill = () => import('@/components/Fill')
 const Login = () => import('@/components/Login')
 
@@ -43,9 +44,14 @@ const routes = [
   },
   {
     path: '/edit',
-    alias: ['/add', '/re-edit'],
     name: 'edit',
     component: Edit,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/add',
+    name: 'add',
+    component: Add,
     meta: { requiresAuth: true }
   }
 ]
