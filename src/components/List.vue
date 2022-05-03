@@ -168,12 +168,12 @@ export default {
 
 		*editItem(item) {
 			yield this.showPrompt(`确认要编辑《${item.title}》？`);
-			yield this.$router.push({name: 'edit', query: {id: item.id}});
+			yield this.$router.push({name: 'edit', query: {id: item._id}});
 		},
 
 		*reEditItem(item) {
 			yield this.showPrompt(`确认要重新编辑《${item.title}》？`);
-			yield this.$router.push({path: 'edit', query: {id: item.id}});
+			yield this.$router.push({path: 'edit', query: {id: item._id}});
 		},
 
 		*deleteItem(item) {
@@ -209,7 +209,7 @@ export default {
 		},
 
 		_deletePaper(list) {
-			let idList = list.map(item => item.id)
+			let idList = list.map(item => item._id)
 			let data = { idList }
 			deletePaper(data).then(res => {
 				if (res.code === 0) {

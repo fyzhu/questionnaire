@@ -17,17 +17,17 @@
 				:class="{nowEditing: curIndex === index && topicEditing, optEditing: curIndex === index}">
 					<h3 @click="curIndex = index; curOptIndex=''; topicEditing = true">
 						<span class="qu-num">{{`Q${index + 1}`}}</span>
-						<span class="qu-topic">{{ item.questionTitle || '请编辑题目内容' }}</span>
+						<span class="qu-topic">{{ item.title || '请编辑题目内容' }}</span>
 						<input type="text"
 						v-focus
-						v-model="item.questionTitle"
+						v-model="item.title"
 						@blur="topicEditing = false"
 						@keyup.enter="topicEditing = false">
-						<span class="qu-type">{{ item.questionType | transformQursiotnType}}</span>
+						<span class="qu-type">{{ item.type | transformQursiotnType}}</span>
 					</h3>
-					<textarea v-if="item.questionType === 3" rows="8" cols="80"></textarea>
+					<textarea v-if="item.type === 3" rows="8" cols="80"></textarea>
 					<ul v-else class="options-list" >
-						<li v-for="(option, optIndex) in item.questionOption"
+						<li v-for="(option, optIndex) in item.options"
 								:class="{optionEditing: curOptIndex === optIndex}"
 						>
 							<span class="optionText"
@@ -36,12 +36,12 @@
 							</span>
 							<input type="text"
 							v-focus
-							v-model="item.questionOption[optIndex]"
+							v-model="item.options[optIndex]"
 							@blur="curIndex=''"
 							@keyup.enter="curIndex=''">
 							<ul class="opt-ctrl">
-								<li v-if="optIndex === item.questionOption.length - 1" @click="addOption(item.questionOption)">添加</li>
-								<li @click="deleteOption(optIndex, item.questionOption)">删除</li>
+								<li v-if="optIndex === item.options.length - 1" @click="addOption(item.options)">添加</li>
+								<li @click="deleteOption(optIndex, item.options)">删除</li>
 							</ul>
 						</li>
 					</ul>
@@ -136,19 +136,19 @@ import { apiDomain, getPaper, createPaper, uploadPaper } from '../api'
 
 const questionTemplate = {
 	radio: {
-		questionType: 1,
-		questionTitle: "",
-		questionOption: ["",""]
+		type: 1,
+		title: "",
+		options: ["",""]
 	},
 	checkbox: {
-			questionType: 2,
-			questionTitle: "",
-			questionOption: ["",""]
+			type: 2,
+			title: "",
+			options: ["",""]
 		},
 	textarea: {
-			questionType: 3,
-			questionTitle: "",
-			questionOption: []
+			type: 3,
+			title: "",
+			options: []
 		}
 }
 
@@ -325,9 +325,9 @@ export default {
         if(item.type!= 'textarea') {
 
           let emptyOptionList = item.options.filter(option => option === '')
-				  return item.questionTitle !== '' && !emptyOptionList.length
+				  return item.title !== '' && !emptyOptionList.length
         }else {
-          return item.questionTitle !== ''
+          return item.title !== ''
         }
 			})
 			if (!isAllQuestionFull) {
