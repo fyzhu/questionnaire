@@ -9,25 +9,25 @@
 				<section class="qu-item" v-for="(item, index) in questionList">
 					<h3>
 						<span class="qu-num">{{`Q${index + 1}`}}</span>
-						<span class="qu-topic">{{ item.questionTitle }}</span>
-						<span class="qu-type">{{ item.questionType | transformQursiotnType}}</span>
+						<span class="qu-topic">{{ item.title }}</span>
+						<span class="qu-type">{{ item.type | transformQursiotnType}}</span>
 					</h3>
 					<textarea rows="8"
 						      	cols="80"
-					          v-if="item.questionType === 3"
+					          v-if="item.type === 3"
 										v-model="answerList[index].answerContent[0]"
 					>
 					</textarea>
 					<ul v-else class="options-list">
-						<li  v-for="(option, optIndex) in item.questionOption">
+						<li  v-for="(option, optIndex) in item.options">
 							<label>
-								<input v-if="item.questionType === 1"
+								<input v-if="item.type === 1"
 											type="radio"
 											:value="option"
 									    :name="index + 1"
 											v-model="answerList[index].answerContent[0]"
 								>
-								<input v-else-if="item.questionType === 2"
+								<input v-else-if="item.type === 2"
 											type="checkbox"
 											:value="option"
 									    :name="index + 1"
@@ -103,7 +103,7 @@ export default {
 
 		validateAnswer() {
 			let noAnswerList = this.answerList.filter(item => {
-				if (item.questionType !== 3 && !item.answerContent.length) {
+				if (item.type !== 3 && !item.answerContent.length) {
 					return item
 				}
 			})
@@ -115,7 +115,7 @@ export default {
 			this.questionList.map((item, index) => {
 				this.$set(this.answerList, index, {
 					id: item.id,
-					questionType: item.questionType,
+					type: item.type,
 					answerContent: []
 				})
 			})

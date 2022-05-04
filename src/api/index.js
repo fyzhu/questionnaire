@@ -73,7 +73,7 @@ export function getPaper(data) {
 
 // 修改问卷
 export function updatePaper(data) {
-  const url = '/papers/' + data.id
+  const url = '/papers/' + data._id
   return adminHttp().put(url, data).then(res => Promise.resolve(res.data))
 }
 

@@ -19,11 +19,11 @@
 				<li>
 					<template v-if="paper.status === 0">
 						<span @click="iterator = editItem(paper); iterator.next()">编辑</span>
-						<span @click="viewPaper(paper.id)">查看问卷</span>
+						<span @click="viewPaper(paper._id)">查看问卷</span>
 					</template>
 					<template v-else-if="paper.status === 1">
-						<span @click="sharePaper(paper.id)">分享问卷</span>
-						<span @click="viewData(paper.id)">查看数据</span>
+						<span @click="sharePaper(paper._id)">分享问卷</span>
+						<span @click="viewData(paper._id)">查看数据</span>
 					</template>
 					<template v-else>
 						<span @click="iterator = reEditItem(paper); iterator.next()">编辑</span>
@@ -167,12 +167,12 @@ export default {
 		},
 
 		*editItem(item) {
-			yield this.showPrompt(`确认要编辑《${item.title}》？`);
+			// yield this.showPrompt(`确认要编辑《${item.title}》？`);
 			yield this.$router.push({name: 'edit', query: {id: item._id}});
 		},
 
 		*reEditItem(item) {
-			yield this.showPrompt(`确认要重新编辑《${item.title}》？`);
+			// yield this.showPrompt(`确认要重新编辑《${item.title}》？`);
 			yield this.$router.push({path: 'edit', query: {id: item._id}});
 		},
 
@@ -213,9 +213,7 @@ export default {
 			let data = { idList }
 			deletePaper(data).then(res => {
 				if (res.code === 0) {
-					if (res.data === 0) {
-						this._getPaperList()
-					}
+          this._getPaperList()
 				}
 			})
 		}
