@@ -182,7 +182,7 @@ export default {
 
 		_commitPaper() {
 			let data = {
-				id: this.paperObj.id,
+				id: this.paperObj._id,
 				answers: this.answerList
 			}
 			commitPaper(data).then(res => {
