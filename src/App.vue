@@ -1,19 +1,19 @@
 <template>
   <div id="app">
-  	<v-header></v-header>
-  	<router-view></router-view>
+    <v-header></v-header>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import vHeader from './components/Header'
+import vHeader from "./components/Header";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-  	vHeader
-  }
-}
+    vHeader,
+  },
+};
 </script>
 
 <style>
@@ -28,8 +28,8 @@ export default {
 }
 
 @media screen and (max-width: 640px) {
-	#app {
-		min-width: 100%;
+  #app {
+    min-width: 100%;
   }
 }
 </style>

@@ -1,75 +1,75 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import storage, { TOKEN_KEY }from '../public/js/storage.js'
+import Vue from "vue";
+import Router from "vue-router";
+import storage, { TOKEN_KEY } from "../public/js/storage.js";
 
 // 异步加载
-const Register = () => import('@/components/Register')
-const List = () => import('@/components/List')
-const Data = () => import('@/components/Data')
-const Edit = () => import('@/components/Edit')
-const Add = () => import('@/components/Add')
-const Fill = () => import('@/components/Fill')
-const Login = () => import('@/components/Login')
+const Register = () => import("@/components/Register");
+const List = () => import("@/components/List");
+const Data = () => import("@/components/Data");
+const Edit = () => import("@/components/Edit");
+const Add = () => import("@/components/Add");
+const Fill = () => import("@/components/Fill");
+const Login = () => import("@/components/Login");
 
-Vue.use(Router)
+Vue.use(Router);
 
 const routes = [
   {
-    path: '/',
-    redirect: '/list'
+    path: "/",
+    redirect: "/list",
   },
   {
-    path: '/login',
-    component: Login
+    path: "/login",
+    component: Login,
   },
   {
-    path: '/register',
-    component: Register
+    path: "/register",
+    component: Register,
   },
   {
-    path: '/list',
+    path: "/list",
     component: List,
-    meta: { requiresAuth: true }
+    meta: { requiresAuth: true },
   },
   {
-    path: '/fill',
-    alias: '/view',
-    component: Fill
+    path: "/fill",
+    alias: "/view",
+    component: Fill,
   },
   {
-    path: '/data',
-    name: 'data',
+    path: "/data",
+    name: "data",
     component: Data,
-    meta: { requiresAuth: true }
+    meta: { requiresAuth: true },
   },
   {
-    path: '/edit',
-    name: 'edit',
+    path: "/edit",
+    name: "edit",
     component: Edit,
-    meta: { requiresAuth: true }
+    meta: { requiresAuth: true },
   },
   {
-    path: '/add',
-    name: 'add',
+    path: "/add",
+    name: "add",
     component: Add,
-    meta: { requiresAuth: true }
-  }
-]
+    meta: { requiresAuth: true },
+  },
+];
 
-const router = new Router({ routes })
+const router = new Router({ routes });
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (!storage.get(TOKEN_KEY)) {
       next({
-        path: '/login',
-        query: { redirect: to.fullPath }
-      })
+        path: "/login",
+        query: { redirect: to.fullPath },
+      });
     } else {
-      next()
+      next();
     }
   } else {
-    next()
+    next();
   }
-})
+});
 
-export default router
+export default router;
